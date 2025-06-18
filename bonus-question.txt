@@ -1,0 +1,17 @@
+To scale this service to handle 10000 concurrent requests per second, i think these ideas will help.
+
+1. For Horizontal Scaling
+-> Package the app using Docker and use Kubernetes Horizontal Pod AutoScaler to auto scale replicas on top of maybe Amazon EC2.
+-> Use load-balancer
+
+2. gRPC Load-Balancing
+-> From client side we can use the build in load-balancer.
+-> From server side we can use service like Envoy Proxy
+
+3. Report Storage Persistence
+-> We can use PostgreSQL for consistency or Cassandra DB for horizontal scalability.
+
+4. Reliability
+-> We can use patterns like circuit breakers to isolate faulty instances and retry logic with exponential backoffs.
+
+
