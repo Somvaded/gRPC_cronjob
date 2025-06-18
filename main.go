@@ -11,6 +11,7 @@ import (
 	pb "github.com/Somvaded/cronjob-task/proto"
 	"github.com/Somvaded/cronjob-task/server"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 func main() {
@@ -26,6 +27,7 @@ func main() {
 
 	pb.RegisterReportServiceServer(grpcServer , reportService)
 
+	reflection.Register(grpcServer)
 	cronjobFunc := cronjob.CreateCronJob()
 	cronjobFunc.SetupCronjob()
 	cronjobFunc.Start()
